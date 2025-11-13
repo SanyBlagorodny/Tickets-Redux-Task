@@ -1,0 +1,64 @@
+@import '@shared/styles/variables';
+.Aside {
+  position: absolute;
+  right: calc(100% + 3rem);
+}
+.Aside__header {
+  display: none;
+}
+.Aside__footer--desktop {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.Aside__footer--mobile {
+  display: none;
+}
+
+@media (max-width: 1400px) {
+  .Aside {
+    position: static;
+    background: $color--purple;
+    color: white;
+    border-radius: $border-radius--primary;
+  }
+  .Aside__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    border-radius: $border-radius--primary;
+  }
+  .Aside__footer--desktop {
+    display: none;
+  }
+  .Aside__footer--mobile {
+    display: flex;
+    padding: 0.5rem 1.5rem 1.5rem;
+    flex-direction: row;
+    gap: 1rem;
+    border-radius: $border-radius--primary;
+    animation: dropdown 0.5s ease-in-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Aside__footer--mobile {
+    animation: none;
+  }
+}
+@media (max-width: 630px) {
+  .Aside__header {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+}
+
+@keyframes dropdown {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 500px;
+  }
+}

@@ -1,0 +1,59 @@
+@import "@shared/styles/variables";
+
+.Ticket.Ticket--skeleton {
+  background: $color--light-lavender;
+  border-radius: $border-radius--primary;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Ticket.Ticket--skeleton .Ticket__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0.06) 25%,
+    rgba(0,0,0,0.10) 37%,
+    rgba(0,0,0,0.06) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+
+.skeleton--price { width: 160px; height: 28px; }
+.skeleton--logo { width: 70px; height: 28px; border-radius: 14px; }
+.skeleton--text { width: 180px; height: 18px; }
+.skeleton--text.small { width: 140px; height: 14px; }
+
+.Ticket.Ticket--skeleton .Ticket__footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .Ticket.Ticket--skeleton {
+    padding: 1.25rem;
+  }
+  .skeleton--price { width: 140px; height: 24px; }
+  .skeleton--logo { width: 56px; height: 24px; }
+  .skeleton--text { width: 140px; height: 16px; }
+  .skeleton--text.small { width: 120px; height: 12px; }
+  .Ticket.Ticket--skeleton .Ticket__footer {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+  }
+}

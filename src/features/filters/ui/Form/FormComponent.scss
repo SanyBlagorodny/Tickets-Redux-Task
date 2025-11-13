@@ -1,0 +1,74 @@
+@import "@shared/styles/variables";
+
+.Form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.Form__input {
+  display: none;
+}
+
+.Form__label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: $color--lavender;
+  cursor: pointer;
+}
+
+.Form__input + .Form__label::before {
+  border: 1px solid $color--purple;
+  width: 21px;
+  height: 21px;
+  content: '';
+  border-radius: 4px;
+}
+
+.Form__input--connections + .Form__label::before {
+  border-radius: 4px;
+}
+
+.Form__input--company + .Form__label::before {
+  border-radius: 50%;
+}
+
+.Form__input--connections:checked + .Form__label::before {
+  background: url('@shared/assets/svg/check_1.svg') no-repeat center;
+}
+
+.Form__input--company:checked + .Form__label::before {
+  background: url('@shared/assets/svg/check_2.svg') no-repeat center;
+  background-size: 80% 80%;
+  background-color: $color--purple;
+  border-color: $color--purple;
+}
+
+@media (max-width: 1400px) {
+  .Form__label {
+    color: white;
+  }
+  .Form__input + .Form__label::before {
+    border: 1px solid white;
+  }
+  .Form__input--connections:checked + .Form__label::before {
+    background: url('@shared/assets/svg/check_1--white.svg') no-repeat center;
+    background-size: 80% 80%;
+  }
+  .Form__input--company:checked + .Form__label::before {
+    background: url('@shared/assets/svg/check_2--white.svg') no-repeat center;
+    background-size: 80% 80%;
+    background-color: white;
+    border-color: white;
+  }
+}
+
+@media (max-width: 630px) {
+  .Form__label {
+    font-size: 0.75rem;
+  }
+}
+
+

@@ -1,0 +1,30 @@
+@import "@shared/styles/variables";
+
+.Toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: $color--light-lavender;
+  color: $color--purple;
+  box-shadow: 0 6px 24px rgba(0,0,0,.12);
+}
+
+.Toast--error {
+  background: rgba(255, 93, 93, 0.15);
+  color: #b00020;
+  border: 1px solid rgba(176, 0, 32, .25);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Toast { animation: toast-in .25s ease-out; }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
