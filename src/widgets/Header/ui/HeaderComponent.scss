@@ -1,40 +1,26 @@
 @import '@shared/styles/variables';
 
 .Header {
-  display: grid;
-  grid-template-columns: 272px 1fr; /* left aside width + main column */
+  display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   position: static;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 .Header__logo {
   display: block;
-  justify-self: start;
-  align-self: center; /* center within left column */
-}
-
-.Header__center {
-  width: 100%;
-  max-width: 727px; /* same as main content width */
-  margin: 0 auto;
-  position: relative; /* allow absolute toggle without affecting title centering */
 }
 
 .Header__title {
-  margin: 0 auto; /* keep perfectly centered regardless of toggle width */
+  margin: 0;
   font-size: 1.5rem;
   color: $color--purple;
-  text-align: center;
 }
 
-/* Theme toggle stays at the right edge of the main column without shifting title */
-.Header__center .ThemeToggle {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+@media (min-width: 1441px) {
+  .Header {
+    position: absolute;
+    right: calc(50% + 2rem + 272px)
+  }
 }

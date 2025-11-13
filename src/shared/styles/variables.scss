@@ -1,21 +1,5 @@
-/* CSS variables for theming */
-:root {
-  --color-white: 255, 255, 255;
-  --color-purple: 78, 20, 140;
-  --color-lavender: 133, 138, 227;
-  --color-light-lavender: 232, 235, 242;
-}
-
-[data-theme="dark"] {
-  --color-white: 20, 20, 24;
-  --color-purple: 190, 170, 255; /* lighter for contrast on dark */
-  --color-lavender: 185, 190, 255;
-  --color-light-lavender: 40, 42, 54;
-}
-
-/* SCSS variables that reference CSS variables */
-$color--white: rgba(var(--color-white), 1);
-$color--purple: rgba(var(--color-purple), 1);
-$color--lavender: rgba(var(--color-lavender), 1);
-$color--light-lavender: rgba(var(--color-light-lavender), 1);
+$color--white: rgba(255, 255, 255, 1);
+$color--purple: rgba(78, 20, 140, 1);
+$color--lavender: rgba(133, 138, 227, 1);
+$color--light-lavender: rgba(232, 235, 242, 1);
 $border-radius--primary: 10px;

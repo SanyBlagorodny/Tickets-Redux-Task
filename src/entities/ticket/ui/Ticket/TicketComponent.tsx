@@ -53,7 +53,7 @@ export const TicketComponent: FC<ITicketData> = ({
           {price} {getCurrency()}
         </p>
         <div className={"Ticket__company"}>
-          <img src={getCompanyImg()} alt={company} loading="lazy" />
+          <img src={getCompanyImg()} alt={company} />
         </div>
       </div>
       <div className={"Ticket__footer"}>

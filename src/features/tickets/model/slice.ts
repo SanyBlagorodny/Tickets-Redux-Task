@@ -8,30 +8,16 @@ import {
 } from "@reduxjs/toolkit";
 import { fetchTicketsData } from "./services/fetchTicketsData.ts";
 import type { ITicketData } from "@entities/ticket/model/types.ts";
-import { type SetFilterBy, SortBy, type TicketsState, FilterBy, type IFilters } from "./types.ts";
+import { type SetFilterBy, SortBy, type TicketsState, FilterBy } from "./types.ts";
 import type { RootState } from "@app/store.ts";
 export const ticketsAdapter = createEntityAdapter<ITicketData>();
-const PERSIST_KEY = "tickets_prefs";
-const defaultFilters: IFilters = { connections: [], company: [] };
-const loadPrefs = () => {
-  try {
-    const raw = localStorage.getItem(PERSIST_KEY);
-    if (!raw) return { sortBy: SortBy.Price, filters: defaultFilters };
-    const data = JSON.parse(raw) as { sortBy?: SortBy; filters?: IFilters };
-    return {
-      sortBy: data.sortBy ?? SortBy.Price,
-      filters: data.filters ?? defaultFilters,
-    };
-  } catch {
-    void 0;
-    return { sortBy: SortBy.Price, filters: defaultFilters };
-  }
-};
-const persisted = loadPrefs();
 const initialState: TicketsState = {
   tickets: ticketsAdapter.getInitialState(),
-  sortBy: persisted.sortBy,
-  filters: persisted.filters,
+  sortBy: SortBy.Price,
+  filters: {
+    connections: [],
+    company: [],
+  },
   loading: false,
   error: null,
 };
@@ -59,27 +45,11 @@ export const ticketsSlice = createSlice({
   reducers: {
     setSortBy: (state: TicketsState, action: PayloadAction<SortBy>) => {
       state.sortBy = action.payload;
-      try {
-        localStorage.setItem(
-          PERSIST_KEY,
-          JSON.stringify({ sortBy: state.sortBy, filters: state.filters }),
-        );
-      } catch {
-        void 0;
-      }
     },
     setFilterBy: (state: TicketsState, action: PayloadAction<SetFilterBy>) => {
       const { filterBy, id, checked } = action.payload;
       if (filterBy === FilterBy.Company) {
         state.filters.company = checked ? [id] : [];
-        try {
-          localStorage.setItem(
-            PERSIST_KEY,
-            JSON.stringify({ sortBy: state.sortBy, filters: state.filters }),
-          );
-        } catch {
-          void 0;
-        }
         return;
       }
       const key = filterBy as keyof TicketsState["filters"];
@@ -90,14 +60,6 @@ export const ticketsSlice = createSlice({
         }
       } else {
         state.filters[key] = current.filter((item: string) => item !== id);
-      }
-      try {
-        localStorage.setItem(
-          PERSIST_KEY,
-          JSON.stringify({ sortBy: state.sortBy, filters: state.filters }),
-        );
-      } catch {
-        void 0;
       }
     },
   },

@@ -9,22 +9,16 @@ import type { ITicketData } from "@entities/ticket/model/types.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTicketsData } from "@features/tickets/model/services/fetchTicketsData.ts";
 import { TicketComponent } from "@entities/ticket/ui/Ticket/TicketComponent.tsx";
-import { Toast } from "@shared/ui/Toast/Toast.tsx";
-import { useSelector as useRawSelector } from "react-redux";
-import type { RootState } from "@app/store.ts";
-import { SkeletonTicket } from "@shared/ui/Skeleton/SkeletonTicket.tsx";
 
 export const MainComponent = () => {
   const dispatch: RootDispatch = useDispatch();
   const tickets = useSelector(selectFilteredSortedTickets);
-  const { loading, error } = useRawSelector((s: RootState) => s.ticketsReducer);
   const [limit, setLimit] = useState(2);
   useEffect(() => {
     dispatch(fetchTicketsData());
   }, [dispatch]);
   const handleSortBy = (value: SortBy) => {
     dispatch(setSortBy(value));
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const handleAdd = () => {
     setLimit((prevLimit: number) => prevLimit + 2);
@@ -53,14 +47,7 @@ export const MainComponent = () => {
         />
       </div>
       <AsideComponent />
-      {loading && (
-        <>
-          <SkeletonTicket />
-          <SkeletonTicket />
-          <SkeletonTicket />
-        </>
-      )}
-      {!loading && selectedTickets.map((ticket: ITicketData) => (
+      {selectedTickets.map((ticket: ITicketData) => (
         <TicketComponent
           key={ticket.id}
           id={ticket.id}
@@ -75,14 +62,13 @@ export const MainComponent = () => {
           connections={ticket.connections}
         />
       ))}
-      {!loading && selectedTickets.length < tickets.length && (
+      {selectedTickets.length < tickets.length && (
         <ButtonComponent
           text={"Загрузить ещё билеты"}
           place={"footer"}
           onClick={handleAdd}
         />
       )}
-      {error && <Toast text={"Не удалось загрузить билеты"} type={"error"} />}
     </div>
   );
 };
