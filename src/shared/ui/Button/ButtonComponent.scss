@@ -71,6 +71,11 @@
 
 .Button--aside__image {
   transition: 0.5s;
+  filter: brightness(0) invert(39%) sepia(19%) saturate(1594%) hue-rotate(239deg) brightness(96%) contrast(91%);
+}
+
+[data-theme="light"] .Button--aside__image {
+  filter: brightness(0) invert(17%) sepia(89%) saturate(1584%) hue-rotate(238deg) brightness(97%) contrast(89%);
 }
 
 .Button--aside__image--rotated {

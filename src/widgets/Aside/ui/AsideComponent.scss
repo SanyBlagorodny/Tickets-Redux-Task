@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  align-items: flex-start; /* Выравнивание по левому краю для консистентности */
 }
 .Aside__footer--mobile {
   display: none;
@@ -36,10 +37,11 @@
   .Aside__footer--mobile {
     display: flex;
     padding: 0.5rem 1.5rem 1.5rem;
-    flex-direction: row;
-    gap: 1rem;
+    flex-direction: column; /* Изменено на вертикальное расположение */
+    gap: 3rem; /* Увеличено до 3rem для вертикального расположения */
     border-radius: $border-radius--primary;
     animation: dropdown 0.5s ease-in-out;
+    align-items: flex-start; /* Выравнивание по левому краю для консистентности */
   }
 }
 
@@ -65,7 +67,7 @@
   }
   .Aside__footer--mobile {
     padding: 0.5rem 1rem 1rem;
-    gap: 0.75rem;
+    gap: 2rem; /* Уменьшаем gap для очень маленьких экранов, но сохраняем вертикальное расположение */
   }
 }
 
