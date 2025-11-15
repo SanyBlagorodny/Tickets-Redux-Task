@@ -5,7 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   // Base path is important for GitHub Pages. Can be overridden via BASE_PATH env.
-  base: process.env.BASE_PATH || '/',
+  base: process.env.BASE_PATH || '/Tickets-Redux-Task/',
   plugins: [react()],
   resolve: {
     alias: {
