@@ -1,24 +1,94 @@
+.Main {
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+  background: var(--bg-primary);
+}
+
+.Main__aside-desktop {
+  flex: 0 0 auto;
+}
+
+.Main__aside-mobile {
+  display: none;
+}
+
 .Tickets {
- width: 100%;
- display: flex;
- flex-direction: column;
- gap: 3rem;
- max-width: 727px;
- position: relative;
+  flex: 0 0 727px;
+  max-width: 727px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .Tickets__buttons {
- margin-bottom: calc(-2rem);
- display: flex;
- gap: 0.5rem;
+  margin-bottom: calc(-2rem);
+  display: flex;
+  gap: 0.5rem;
 }
 
-@media (max-width: 630px) {
- .Tickets {
-  gap: 1rem;
- }
- .Tickets__buttons {
-  margin-bottom: 0;
-  gap: 0.25rem;
- }
+/* Планшеты и небольшие десктопы - центрирование */
+@media (max-width: 1200px) {
+  .Main {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .Main__aside-desktop {
+    display: none;
+  }
+  .Main__aside-mobile {
+    display: block;
+  }
+  .Tickets {
+    flex: 1 1 auto;
+    max-width: 100%;
+    gap: 2rem;
+    margin: 0 auto;
+  }
+  .Tickets__buttons {
+    margin-bottom: 0;
+    gap: 0.3rem;
+  }
+}
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .Main {
+    gap: 1.5rem;
+  }
+  .Tickets {
+    gap: 1.5rem;
+  }
+  .Tickets__buttons {
+    width: 100%;
+    gap: 0.25rem;
+  }
+}
+
+/* Мобильные */
+@media (max-width: 480px) {
+  .Main {
+    gap: 1rem;
+  }
+  .Tickets {
+    gap: 1rem;
+  }
+  .Tickets__buttons {
+    gap: 0.2rem;
+  }
+}
+
+/* Маленькие мобильные */
+@media (max-width: 320px) {
+  .Main {
+    gap: 0.75rem;
+  }
+  .Tickets {
+    gap: 0.75rem;
+  }
+  .Tickets__buttons {
+    gap: 0.15rem;
+  }
 }

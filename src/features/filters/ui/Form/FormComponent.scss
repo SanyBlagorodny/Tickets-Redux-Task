@@ -5,6 +5,7 @@
   align-items: center;
   gap: 1rem;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .Form__input {
@@ -15,60 +16,64 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: $color--lavender;
+  color: var(--text-secondary);
   cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
-.Form__input + .Form__label::before {
-  border: 1px solid $color--purple;
-  width: 21px;
-  height: 21px;
-  content: '';
-  border-radius: 4px;
+.Form__label:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
-.Form__input--connections + .Form__label::before {
-  border-radius: 4px;
-}
-
-.Form__input--company + .Form__label::before {
-  border-radius: 50%;
-}
-
-.Form__input--connections:checked + .Form__label::before {
-  background: url('@shared/assets/svg/check_1.svg') no-repeat center;
-}
-
-.Form__input--company:checked + .Form__label::before {
-  background: url('@shared/assets/svg/check_2.svg') no-repeat center;
-  background-size: 80% 80%;
-  background-color: $color--purple;
-  border-color: $color--purple;
-}
-
-@media (max-width: 1400px) {
+/* Планшеты и небольшие десктопы */
+@media (max-width: 1200px) {
+  .Form {
+    gap: 0.75rem;
+  }
   .Form__label {
-    color: white;
-  }
-  .Form__input + .Form__label::before {
-    border: 1px solid white;
-  }
-  .Form__input--connections:checked + .Form__label::before {
-    background: url('@shared/assets/svg/check_1--white.svg') no-repeat center;
-    background-size: 80% 80%;
-  }
-  .Form__input--company:checked + .Form__label::before {
-    background: url('@shared/assets/svg/check_2--white.svg') no-repeat center;
-    background-size: 80% 80%;
-    background-color: white;
-    border-color: white;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    gap: 0.75rem;
   }
 }
 
-@media (max-width: 630px) {
+/* Планшеты */
+@media (max-width: 768px) {
+  .Form {
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .Form__label {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Мобильные */
+@media (max-width: 480px) {
+  .Form {
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
   .Form__label {
     font-size: 0.75rem;
+    gap: 0.4rem;
+    padding: 0.25rem 0.5rem;
   }
 }
 
-
+/* Маленькие мобильные */
+@media (max-width: 320px) {
+  .Form {
+    gap: 0.3rem;
+  }
+  .Form__label {
+    font-size: 0.7rem;
+    gap: 0.3rem;
+    padding: 0.2rem 0.4rem;
+  }
+}

@@ -2,22 +2,26 @@
 .Button {
   cursor: pointer;
   transition: 0.2s;
-  border: 1px solid $color--purple;
+  border: 1px solid var(--border);
   font-family: Inter, sans-serif;
   font-weight: 700;
   padding-block: 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .Button:hover {
-  background-color: $color--purple;
+  background-color: var(--accent);
   color: white;
+  border-color: var(--accent);
 }
 
 .Button--header {
   width: 33.3%;
-  background: $color--light-lavender;
+  background: var(--bg-card);
   font-size: 1rem;
-  color: $color--purple;
+  color: var(--text-secondary);
+  border-color: var(--border);
 }
 
 .Button--header:first-child {
@@ -31,24 +35,28 @@
 }
 
 .Button--header--active {
-  background: $color--purple;
+  background: var(--accent);
   color: white;
+  border-color: var(--accent);
 }
 
 .Button--footer {
-  position: sticky;
-  bottom: 2rem;
-  background: $color--purple;
+  position: static;
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  background: var(--accent);
   color: white;
   font-size: 1.5rem;
   border-radius: $border-radius--primary;
+  border-color: var(--accent);
 }
 
 .Button--aside {
   border: 0;
   background: transparent;
   padding: 0.5rem;
-  color: white;
+  color: var(--text-primary);
   font-weight: 500;
   font-size: 0.75rem;
   display: flex;
@@ -58,7 +66,7 @@
 }
 
 .Button--aside:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-secondary);
 }
 
 .Button--aside__image {
@@ -71,24 +79,43 @@
 
 @media (max-width: 630px) {
   .Button--header {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    padding-inline: 0;
-  }
-
-  .Button--header {
-    font-size: 0.75rem;
+    padding-inline: 0.3rem;
+    padding-block: 0.5rem;
+    line-height: 1.1;
+    text-align: center;
   }
 
   .Button--footer {
-    bottom: 1rem;
-    background: $color--purple;
-    color: white;
-    font-size: 1.5rem;
-    border-radius: $border-radius--primary;
+    position: static;
+    width: 100%;
+    margin-top: 0.75rem;
   }
 
   .Button--aside__text {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .Button--header {
+    font-size: 0.65rem;
+    padding-inline: 0.2rem;
+    padding-block: 0.4rem;
+    line-height: 1;
+  }
+
+  .Button--footer {
+    font-size: 1.25rem;
+    padding-block: 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .Button--header {
+    font-size: 0.6rem;
+    padding-inline: 0.15rem;
+    padding-block: 0.35rem;
   }
 }

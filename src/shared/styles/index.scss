@@ -1,32 +1,51 @@
 @import "variables.scss";
+@import "themes.scss";
 
 #root {
   width: 100%;
+  min-height: 100vh;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--accent);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--accent-hover);
 }
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: Inter, sans-serif;
 }
 
 header {
-  height: 81px;
   width: 100%;
   position: relative;
 }
 
 main {
   width: 100%;
-  max-width: 727px;
+  flex: 1;
+}
+
+/* Убираем фиксированную высоту header и main */
+@media (max-width: 768px) {
+  header {
+    height: auto;
+    min-height: 96px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    min-height: 80px;
+  }
 }

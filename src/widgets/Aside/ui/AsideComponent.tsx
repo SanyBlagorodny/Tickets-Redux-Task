@@ -37,13 +37,13 @@ export const AsideComponent = () => {
         />
       </div>
       <div className={"Aside__footer--desktop"}>
-        <FilterComponent filterBy={FilterBy.Company} />
         <FilterComponent filterBy={FilterBy.Connections} />
+        <FilterComponent filterBy={FilterBy.Company} />
       </div>
       {dropdownVisible ? (
         <div className={"Aside__footer--mobile"}>
-          <FilterComponent filterBy={FilterBy.Company} />
           <FilterComponent filterBy={FilterBy.Connections} />
+          <FilterComponent filterBy={FilterBy.Company} />
         </div>
       ) : null}
     </div>

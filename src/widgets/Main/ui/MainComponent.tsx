@@ -9,11 +9,12 @@ import type { ITicketData } from "@entities/ticket/model/types.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTicketsData } from "@features/tickets/model/services/fetchTicketsData.ts";
 import { TicketComponent } from "@entities/ticket/ui/Ticket/TicketComponent.tsx";
+import { AnimatedList } from "@shared/ui/AnimatedList/AnimatedList.tsx";
 
 export const MainComponent = () => {
   const dispatch: RootDispatch = useDispatch();
   const tickets = useSelector(selectFilteredSortedTickets);
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(3);
   useEffect(() => {
     dispatch(fetchTicketsData());
   }, [dispatch]);
@@ -21,12 +22,37 @@ export const MainComponent = () => {
     dispatch(setSortBy(value));
   };
   const handleAdd = () => {
-    setLimit((prevLimit: number) => prevLimit + 2);
+    setLimit((prevLimit: number) => prevLimit + 3);
   };
   const selectedTickets: ITicketData[] = tickets.slice(0, limit);
+  
+  const handleTicketSelect = (ticket: ITicketData, index: number) => {
+    console.log('Selected ticket:', ticket, 'Index:', index);
+  };
+  
+  const renderTicket = (ticket: ITicketData, index: number, isSelected: boolean) => {
+    return (
+      <TicketComponent
+        id={ticket.id}
+        from={ticket.from}
+        to={ticket.to}
+        company={ticket.company}
+        price={ticket.price}
+        currency={ticket.currency}
+        time={ticket.time}
+        duration={ticket.duration}
+        date={ticket.date}
+        connections={ticket.connections}
+      />
+    );
+  };
   return (
-    <div className={"Tickets"}>
-      <div className={"Tickets__buttons"}>
+    <div className={"Main"}>
+      <div className={"Main__aside-desktop"}>
+        <AsideComponent />
+      </div>
+      <div className={"Tickets"}>
+        <div className={"Tickets__buttons"}>
         <ButtonComponent
           sortBy={SortBy.Price}
           text={"Самый дешёвый"}
@@ -45,30 +71,26 @@ export const MainComponent = () => {
           place={"header"}
           onClick={() => handleSortBy(SortBy.Connections)}
         />
+        </div>
+        <div className={"Main__aside-mobile"}>
+          <AsideComponent />
+        </div>
+        <AnimatedList
+          items={selectedTickets}
+          onItemSelect={handleTicketSelect}
+          renderItem={renderTicket}
+          showGradients={true}
+          enableArrowNavigation={true}
+          displayScrollbar={true}
+        />
+        {selectedTickets.length < tickets.length && (
+          <ButtonComponent
+            text={"Загрузить ещё билеты"}
+            place={"footer"}
+            onClick={handleAdd}
+          />
+        )}
       </div>
-      <AsideComponent />
-      {selectedTickets.map((ticket: ITicketData) => (
-        <TicketComponent
-          key={ticket.id}
-          id={ticket.id}
-          from={ticket.from}
-          to={ticket.to}
-          company={ticket.company}
-          price={ticket.price}
-          currency={ticket.currency}
-          time={ticket.time}
-          duration={ticket.duration}
-          date={ticket.date}
-          connections={ticket.connections}
-        />
-      ))}
-      {selectedTickets.length < tickets.length && (
-        <ButtonComponent
-          text={"Загрузить ещё билеты"}
-          place={"footer"}
-          onClick={handleAdd}
-        />
-      )}
     </div>
   );
 };

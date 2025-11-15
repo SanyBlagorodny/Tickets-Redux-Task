@@ -1,0 +1,32 @@
+/* Тёмная тема */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0d0d1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: #16213e;
+  --text-primary: #e8e8f0;
+  --text-secondary: #b8b8d0;
+  --text-muted: #8888a0;
+  --accent: #9d4edd;
+  --accent-hover: #c77dff;
+  --border: #2d2d4a;
+  --shadow: rgba(0, 0, 0, 0.7);
+  --filter-bg: #1a1a2e;
+  --filter-border: #2d2d4a;
+}
+
+/* Светлая тема */
+[data-theme="light"] {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --accent: #6c5ce7;
+  --accent-hover: #5f3dc4;
+  --border: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --filter-bg: #ffffff;
+  --filter-border: #dee2e6;
+}
