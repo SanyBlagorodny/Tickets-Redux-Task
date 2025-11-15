@@ -36,7 +36,7 @@ main {
   flex: 1;
 }
 
-/* Убираем фиксированную высоту header и main */
+/* Убираем фиксированную высоту header и main для адаптивности на планшетах */
 @media (max-width: 768px) {
   header {
     height: auto;

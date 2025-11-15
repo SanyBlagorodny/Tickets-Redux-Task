@@ -1,40 +1,49 @@
 @import '@shared/styles/variables';
+
+/* Основной контейнер фильтра */
 .Filter {
-  background: $color--light-lavender;
-  border-radius: $border-radius--primary;
-  padding: 1rem;
+  background: $color--light-lavender; /* Фоновый цвет блока фильтра */
+  border-radius: $border-radius--primary; /* Скругление углов */
+  padding: 1rem; /* Внутренние отступы */
   display: flex;
-  flex-direction: column;
-  width: 272px;
-  max-height: 15.5rem;
-  box-sizing: border-box;
+  flex-direction: column; /* Вертикальное расположение элементов */
+  width: 272px; /* Ширина блока фильтра */
+  max-height: 15.5rem; /* Максимальная высота для ограничения размера */
+  box-sizing: border-box; /* Учет padding и border в общей ширине/высоте */
 }
+
+/* Заголовок фильтра */
 .Filter__title {
-  margin: 0;
-  color: $color--purple;
-  font-size: 20px;
+  margin: 0; /* Убираем внешние отступы */
+  color: $color--purple; /* Цвет заголовка */
+  font-size: 20px; /* Размер шрифта */
 }
+
+/* Контейнер для списка опций фильтра */
 .Filter__list {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 1rem 1.5rem 1rem;
+  flex-direction: column; /* Вертикальное расположение опций */
+  gap: 1rem; /* Расстояние между опциями */
+  padding: 1rem 1rem 1.5rem 1rem; /* Внутренние отступы (снизу больше для предотвращения прилипания) */
 }
+
+/* Адаптивность для планшетов и небольших десктопов - прозрачный фон и белый текст */
 @media (max-width: 1400px) {
   .Filter {
-    background: transparent;
-    padding: 0;
+    background: transparent; /* Прозрачный фон */
+    padding: 0; /* Убираем внутренние отступы */
   }
   .Filter__title {
-    color: white;
+    color: white; /* Белый цвет заголовка для темного фона */
   }
   .Filter__list {
-    padding: 0;
+    padding: 0; /* Убираем внутренние отступы в мобильной версии */
   }
 }
 
+/* Адаптивность для мобильных устройств - уменьшение размера заголовка */
 @media (max-width: 630px) {
   .Filter__title {
-    font-size: 1rem;
+    font-size: 1rem; /* Уменьшаем размер шрифта заголовка */
   }
 }

@@ -93,7 +93,6 @@ export const AnimatedList: FC<AnimatedListProps> = ({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0];
-    console.log('Touch start:', touch.clientY);
     setTouchStart(touch.clientY);
     setTouchEnd(null);
   };
@@ -107,7 +106,6 @@ export const AnimatedList: FC<AnimatedListProps> = ({
     if (!touchStart || !touchEnd) return;
     
     const distance = touchStart - touchEnd;
-    console.log('Touch distance:', distance);
     
     const isSwipeUp = distance > minSwipeDistance;
     const isSwipeDown = distance < -minSwipeDistance;
@@ -116,8 +114,6 @@ export const AnimatedList: FC<AnimatedListProps> = ({
       const newIndex = isSwipeUp 
         ? Math.min(selectedIndex + 1, items.length - 1)
         : Math.max(selectedIndex - 1, 0);
-      
-      console.log('Swipe detected, new index:', newIndex);
       
       if (newIndex !== selectedIndex) {
         setSelectedIndex(newIndex);

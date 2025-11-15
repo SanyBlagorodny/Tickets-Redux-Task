@@ -26,11 +26,11 @@ export const MainComponent = () => {
   };
   const selectedTickets: ITicketData[] = tickets.slice(0, limit);
   
-  const handleTicketSelect = (ticket: ITicketData, index: number) => {
-    console.log('Selected ticket:', ticket, 'Index:', index);
+  const handleTicketSelect = () => {
+    // TODO: Добавить обработку выбора билета
   };
   
-  const renderTicket = (ticket: ITicketData, index: number, isSelected: boolean) => {
+  const renderTicket = (ticket: ITicketData) => {
     return (
       <TicketComponent
         id={ticket.id}

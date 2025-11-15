@@ -1,54 +1,119 @@
-# React + TypeScript + Vite
+# Tickets Redux Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live: https://SanyBlagorodny.github.io/Tickets-Redux-Task/
 
-Currently, two official plugins are available:
+## О проекте
+Одностраничное приложение для поиска и фильтрации авиабилетов на React с Redux Toolkit. Современный UI с темной/светлой темой и адаптивным дизайном для всех устройств.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Основные возможности
+- Поиск авиабилетов с фильтрацией по количеству пересадок
+- Переключение между темной и светлой темой (сохраняется в localStorage)
+- Полностью адаптивный дизайн для мобильных, планшетных и десктопных устройств
+- Redux Toolkit для управления состоянием приложения
+- Современный стеклянный UI с плавными анимациями
+- Поддержка различных авиакомпаний с логотипами
 
-## Expanding the ESLint configuration
+## Технологии
+- React 19 с TypeScript
+- Redux Toolkit для state management
+- Vite как сборщик и dev сервер
+- SCSS для стилизации с CSS переменными для тем
+- Motion для анимаций
+- ESLint для контроля качества кода
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Требования
+- Node.js 18+
+- npm 9+
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Проверка:
+```bash
+node -v
+npm -v
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Установка
+```bash
+npm install
 ```
+
+## Запуск в разработке
+```bash
+npm run dev
+```
+Откроется http://localhost:5173
+
+## Сборка
+```bash
+npm run build
+```
+Сборка в папку `dist/`.
+
+## Линтинг
+```bash
+npm run lint
+```
+
+## Структура проекта
+```
+src/
+  app/                    # Корневые компоненты и настройки
+    App.tsx              # Главный компонент приложения
+    store.ts             # Настройка Redux store
+  entities/              # Сущности (бизнес-логика)
+    ticket/              # Сущность билета
+  features/              # Фичи (UI компоненты с логикой)
+    filters/             # Фильтрация билетов
+    theme/               # Переключение темы
+    tickets/             # Отображение билетов
+  redux/                 # Redux слайсы
+    ticketsSlice/        # Слайс для управления билетами
+  shared/                # Общие ресурсы
+    styles/              # Глобальные стили и темы
+    assets/              # Изображения и SVG
+  widgets/               # Виджеты (крупные UI компоненты)
+    Header/              # Шапка приложения
+    Main/                # Основной контент
+```
+
+## Хранение данных
+- Тема приложения: `localStorage.theme`
+- Состояние фильтров и билетов: Redux store
+
+## Адаптивность
+Приложение полностью адаптировано для:
+- Мобильных устройств (320px - 480px)
+- Планшетов (768px - 1200px)
+- Десктопов (1200px+)
+
+## Известные нюансы
+- При первом запуске используется темная тема по умолчанию
+- Все медиа-запросы оптимизированы для плавной адаптации между размерами экранов
+- SCSS переменные используются для легкого управления темами
+
+## Устранение неполадок
+Порт занят - измените порт в Vite конфигурации или используйте:
+```bash
+# PowerShell
+$env:PORT=3001; npm run dev
+
+# CMD
+set PORT=3001 && npm run dev
+```
+
+Ошибки зависимостей:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+Проблемы со сборкой:
+```bash
+npm run build
+# Проверьте логи на наличие ошибок TypeScript или ESLint
+```
+
+## Полезные ссылки
+- [React Documentation](https://react.dev/)
+- [Redux Toolkit Documentation](https://redux-toolkit.js.org/)
+- [Vite Documentation](https://vitejs.dev/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)

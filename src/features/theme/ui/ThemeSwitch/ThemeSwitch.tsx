@@ -10,7 +10,7 @@ export const ThemeSwitch = () => {
       setTheme(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
     } else {
-      // Default to dark theme
+      // По умолчанию используем темную тему
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   }, []);

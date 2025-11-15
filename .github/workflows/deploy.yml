@@ -1,53 +1,53 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages # Название workflow для деплоя на GitHub Pages
 
-on:
-  push:
+on: # Триггеры для запуска workflow
+  push: # Запуск при пушах в ветку main
     branches: [ main ]
-  workflow_dispatch:
+  workflow_dispatch: # Возможность запустить вручную из интерфейса GitHub
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: # Необходимые права для работы с GitHub Pages
+  contents: read # Чтение содержимого репозитория
+  pages: write # Запись в GitHub Pages
+  id-token: write # Аутентификация через OIDC
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+concurrency: # Настройки параллелизма для предотвращения конфликтов
+  group: "pages" # Группа для всех деплоев
+  cancel-in-progress: true # Отменять текущие деплои при запуске нового
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
+jobs: # Определение задач workflow
+  build: # Задача сборки проекта
+    runs-on: ubuntu-latest # Использование Ubuntu последней версии
+    steps: # Шаги сборки
+      - name: Checkout # Получение кода репозитория
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node # Установка Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 20 # Версия Node.js
+          cache: npm # Кеширование npm зависимостей
 
-      - name: Install dependencies
+      - name: Install dependencies # Установка зависимостей
         run: npm ci
 
-      - name: Build with Vite
+      - name: Build with Vite # Сборка проекта с помощью Vite
         env:
-          # Derive base path automatically from repository name, e.g. "/Tickets-Redux-Task/"
+          # Автоматическое определение базового пути из имени репозитория, например "/Tickets-Redux-Task/"
           BASE_PATH: "/${{ github.event.repository.name }}/"
         run: npm run build
 
-      - name: Upload artifact
+      - name: Upload artifact # Загрузка артефакта сборки
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist # Путь к собранным файлам
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+  deploy: # Задача деплоя на GitHub Pages
+    needs: build # Зависимость от задачи сборки
+    runs-on: ubuntu-latest # Использование Ubuntu последней версии
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: github-pages # Использование окружения GitHub Pages
+      url: ${{ steps.deployment.outputs.page_url }} # URL развернутого сайта
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy to GitHub Pages # Деплой на GitHub Pages
+        id: deployment # Идентификатор шага для доступа к результатам
         uses: actions/deploy-pages@v4
