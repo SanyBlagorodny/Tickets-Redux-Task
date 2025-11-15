@@ -13,19 +13,67 @@
 }
 
 .Form__label {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  color: var(--text-secondary);
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  color: var(--text-primary); /* Возвращаю правильный цвет текста */
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0.5rem 1rem 0.5rem 45px; /* Увеличиваю отступ слева для текста */
+  user-select: none;
+  line-height: 1.2;
   border-radius: 8px;
   transition: all 0.2s ease;
+  width: 100%; /* Занимает всю ширину */
+  justify-content: flex-start; /* Текст слева */
 }
 
 .Form__label:hover {
   background: var(--bg-secondary);
   color: var(--text-primary);
+}
+
+/* Radio button стили */
+.Form__radio-indicator {
+  position: absolute;
+  left: 8px; /* Отступ от левого края */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Не сжиматься */
+}
+
+.Form__input--company:checked + .Form__label .Form__radio-indicator {
+  border: 2px solid var(--accent);
+}
+
+/* Checkbox стили */
+.Form__checkbox-indicator {
+  position: absolute;
+  left: 8px; /* Отступ от левого края */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 21px;
+  height: 21px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Не сжиматься */
+}
+
+.Form__input--connections:checked + .Form__label .Form__checkbox-indicator {
+  border: 2px solid var(--accent);
 }
 
 /* Планшеты и небольшие десктопы - адаптация формы фильтров */
@@ -34,9 +82,14 @@
     gap: 0.75rem;
   }
   .Form__label {
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.8rem 0.4rem 38px;
     font-size: 0.9rem;
-    gap: 0.75rem;
+  }
+  .Form__radio-indicator,
+  .Form__checkbox-indicator {
+    width: 18px;
+    height: 18px;
+    left: 6px;
   }
 }
 
@@ -48,8 +101,13 @@
   }
   .Form__label {
     font-size: 0.8rem;
-    gap: 0.5rem;
-    padding: 0.3rem 0.6rem;
+    padding: 0.3rem 0.6rem 0.3rem 32px;
+  }
+  .Form__radio-indicator,
+  .Form__checkbox-indicator {
+    width: 16px;
+    height: 16px;
+    left: 5px;
   }
 }
 
@@ -61,8 +119,13 @@
   }
   .Form__label {
     font-size: 0.75rem;
-    gap: 0.4rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.5rem 0.25rem 28px;
+  }
+  .Form__radio-indicator,
+  .Form__checkbox-indicator {
+    width: 15px;
+    height: 15px;
+    left: 4px;
   }
 }
 
@@ -73,7 +136,12 @@
   }
   .Form__label {
     font-size: 0.7rem;
-    gap: 0.3rem;
-    padding: 0.2rem 0.4rem;
+    padding: 0.2rem 0.4rem 0.2rem 25px;
+  }
+  .Form__radio-indicator,
+  .Form__checkbox-indicator {
+    width: 14px;
+    height: 14px;
+    left: 3px;
   }
 }

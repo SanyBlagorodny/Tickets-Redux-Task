@@ -31,22 +31,54 @@
   padding: 1rem 1rem 1.5rem 1rem; /* Внутренние отступы (снизу больше для предотвращения прилипания) */
 }
 
-/* Адаптивность для планшетов и небольших десктопов - прозрачный фон и белый текст */
+/* Адаптивность для планшетов и небольших десктопов - прозрачный фон и белый текст */                      
 @media (max-width: 1400px) {
   .Filter {
+    background: transparent; /* Прозрачный фон */                                                          padding: 0; /* Убираем внутренние отступы */                                                min-height: auto; /* Сбрасываем фиксированную высоту для мобильной версии */                                                   align-items: flex-start;
+  }
+  .Filter__title {
+    color: var(--text-primary); /* Используем цвет текста из темы вместо белого */                                                          display: flex;
+    align-items: center;
+    min-height: 1.5em; /* Обеспечиваем одинаковую высоту для выравнивания */                                                         }
+  .Filter__list {
+    padding: 0; /* Убираем внутренние отступы в мобильной версии */           }
+}
+
+/* Десктопная версия - один столбик фильтров */
+@media (min-width: 1401px) {
+  .Filter {
+    background: $color--light-lavender; /* Возвращаю фон */
+    border-radius: $border-radius--primary; /* Возвращаю скругление */
+    padding: 1rem; /* Возвращаю отступы */
+    width: 272px; /* Возвращаю фиксированную ширину */
+    min-height: 15.5rem; /* Возвращаю минимальную высоту */
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+  .Filter__list {
+    padding: 1rem 1rem 1.5rem 1rem; /* Возвращаю отступы списка */
+  }
+}
+
+/* Расположение фильтров в два столбика на экранах свыше 480px */
+@media (min-width: 481px) and (max-width: 1400px) {
+  .Filter {
+    width: 100%; /* Фильтр занимает всю ширину своего столбика */
+    padding: 0; /* Убираю внутренние отступы */
     background: transparent; /* Прозрачный фон */
-    padding: 0; /* Убираем внутренние отступы */
-    min-height: auto; /* Сбрасываем фиксированную высоту для мобильной версии */
+    border-radius: 0; /* Убираю скругление */
+    border: none; /* Убираю границу */
+    min-height: auto; /* Убираю фиксированную высоту */
+    box-sizing: border-box;
     align-items: flex-start;
   }
   .Filter__title {
-    color: var(--text-primary); /* Используем цвет текста из темы вместо белого */
-    display: flex;
-    align-items: center;
-    min-height: 1.5em; /* Обеспечиваем одинаковую высоту для выравнивания */
+    padding: 0.5rem 0; /* Убираю боковые отступы у заголовка */
   }
   .Filter__list {
-    padding: 0; /* Убираем внутренние отступы в мобильной версии */
+    flex-direction: column; /* Опции внутри фильтра остаются вертикальными */
+    gap: 1rem;
+    padding: 0; /* Убираю все отступы у списка */
   }
 }
 

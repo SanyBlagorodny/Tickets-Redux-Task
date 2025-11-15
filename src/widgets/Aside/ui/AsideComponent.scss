@@ -8,7 +8,7 @@
 }
 .Aside__footer--desktop {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 3rem;
   align-items: flex-start; /* Выравнивание по левому краю для консистентности */
 }
@@ -31,18 +31,6 @@
     padding: 0.5rem 0.5rem 0.5rem 1.5rem;
     border-radius: $border-radius--primary;
   }
-  .Aside__footer--desktop {
-    display: none;
-  }
-  .Aside__footer--mobile {
-    display: flex;
-    padding: 0.5rem 1.5rem 1.5rem;
-    flex-direction: column; /* Изменено на вертикальное расположение */
-    gap: 3rem; /* Увеличено до 3rem для вертикального расположения */
-    border-radius: $border-radius--primary;
-    animation: dropdown 0.5s ease-in-out;
-    align-items: flex-start; /* Выравнивание по левому краю для консистентности */
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -50,6 +38,38 @@
     animation: none;
   }
 }
+
+/* Десктопная версия - один столбик фильтров */
+@media (min-width: 1401px) {
+  .Aside__footer--desktop {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение фильтров */
+    gap: 2rem; /* Отступ между фильтрами */
+  }
+  .Aside__footer--mobile {
+    display: none; /* Скрываем мобильную версию */
+  }
+  .Aside__header {
+    display: none; /* Скрываем весь заголовок на ПК */
+  }
+}
+
+/* Два столбика для фильтров на экранах 481px-1400px */
+@media (min-width: 481px) and (max-width: 1400px) {
+  .Aside__footer--desktop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; /* Увеличиваю отступ между столбиками */
+    padding: 0 1rem; /* Добавляю отступы по бокам */
+  }
+  .Aside__footer--mobile {
+    display: none; /* Скрываем мобильную версию */
+  }
+  .Aside__header {
+    display: none; /* Скрываем заголовок на планшетах как на скриншоте */
+  }
+}
+
 @media (max-width: 630px) {
   .Aside {
     width: 100%;
@@ -65,9 +85,17 @@
     font-size: 0.7rem;
     padding: 0.4rem;
   }
+  .Aside__footer--desktop {
+    display: none; /* Скрываем desktop версию */
+  }
   .Aside__footer--mobile {
-    padding: 0.5rem 1rem 1rem;
-    gap: 2rem; /* Уменьшаем gap для очень маленьких экранов, но сохраняем вертикальное расположение */
+    display: flex; /* Показываем мобильную версию */
+    padding: 0.5rem 1.5rem 1.5rem;
+    flex-direction: column;
+    gap: 3rem;
+    border-radius: $border-radius--primary;
+    animation: dropdown 0.5s ease-in-out;
+    align-items: flex-start;
   }
 }
 
