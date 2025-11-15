@@ -1,6 +1,8 @@
 import "./FormComponent.scss";
 import type { ChangeEvent } from "react";
 import { FilterBy } from "@features/tickets/model/types.ts";
+import checkEllipse from "@shared/assets/svg/chek_ellipse.svg";
+import checkArrow from "@shared/assets/svg/check_arow.svg";
 
 export interface FormComponentProps {
   target: FilterBy;
@@ -35,7 +37,7 @@ export const FormComponent = ({
           <span className="Form__radio-indicator">
             {checked && (
               <img 
-                src="/src/shared/assets/svg/chek_ellipse.svg" 
+                src={checkEllipse} 
                 width="15" 
                 height="15" 
                 alt="radio"
@@ -47,7 +49,7 @@ export const FormComponent = ({
           <span className="Form__checkbox-indicator">
             {checked && (
               <img 
-                src="/src/shared/assets/svg/check_arow.svg" 
+                src={checkArrow} 
                 width="15" 
                 height="15" 
                 alt="check"
