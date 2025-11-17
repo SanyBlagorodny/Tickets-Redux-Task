@@ -1,7 +1,7 @@
 import "./MainComponent.scss";
 import { AsideComponent } from "@widgets/Aside/ui/AsideComponent.tsx";
 import { ButtonComponent } from "@shared/ui/Button/ButtonComponent.tsx";
-import { selectFilteredSortedTickets, setSortBy } from "@features/tickets/model/slice.ts";
+import { selectFilteredSortedTickets, selectLoading, selectError, setSortBy } from "@features/tickets/model/slice.ts";
 import { SortBy } from "@features/tickets/model/types.ts";
 import { useEffect, useState } from "react";
 import type { RootDispatch } from "@app/store.ts";
@@ -14,6 +14,8 @@ import { AnimatedList } from "@shared/ui/AnimatedList/AnimatedList.tsx";
 export const MainComponent = () => {
   const dispatch: RootDispatch = useDispatch();
   const tickets = useSelector(selectFilteredSortedTickets);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
   const [limit, setLimit] = useState(3);
   useEffect(() => {
     dispatch(fetchTicketsData());
@@ -25,6 +27,9 @@ export const MainComponent = () => {
     setLimit((prevLimit: number) => prevLimit + 3);
   };
   const selectedTickets: ITicketData[] = tickets.slice(0, limit);
+  
+  if (loading) return <div className="Main__loading">Загрузка...</div>;
+  if (error) return <div className="Main__error">Ошибка: {error}</div>;
   
   const handleTicketSelect = () => {
     // TODO: Добавить обработку выбора билета

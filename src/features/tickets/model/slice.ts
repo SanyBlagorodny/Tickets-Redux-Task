@@ -39,6 +39,9 @@ export const selectFilteredSortedTickets = createSelector(
     );
   },
 );
+
+export const selectLoading = (state: RootState) => state.ticketsReducer.loading;
+export const selectError = (state: RootState) => state.ticketsReducer.error;
 export const ticketsSlice = createSlice({
   name: "ticketsSlice",
   initialState: initialState,

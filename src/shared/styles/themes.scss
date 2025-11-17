@@ -13,6 +13,9 @@
   --shadow: rgba(0, 0, 0, 0.7);
   --filter-bg: #1a1a2e;
   --filter-border: #2d2d4a;
+  --error-color: #ff4757;
+  --error-bg: rgba(255, 71, 87, 0.1);
+  --error-border: rgba(255, 71, 87, 0.3);
 }
 
 /* Светлая тема - основные цвета фона и текста для светлой цветовой схемы */
@@ -29,4 +32,7 @@
   --shadow: rgba(0, 0, 0, 0.1);
   --filter-bg: #ffffff;
   --filter-border: #dee2e6;
+  --error-color: #e74c3c;
+  --error-bg: rgba(231, 76, 60, 0.1);
+  --error-border: rgba(231, 76, 60, 0.3);
 }

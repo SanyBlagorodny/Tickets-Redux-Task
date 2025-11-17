@@ -5,6 +5,29 @@
   background: var(--bg-primary);
 }
 
+.Main__loading,
+.Main__error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+}
+
+.Main__loading {
+  color: var(--text-secondary);
+}
+
+.Main__error {
+  color: var(--error-color);
+  background: var(--error-bg);
+  border-radius: 8px;
+  border: 1px solid var(--error-border);
+}
+
 .Main__aside-desktop {
   flex: 0 0 auto;
 }
